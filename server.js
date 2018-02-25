@@ -5,26 +5,60 @@ var path = require('path');
 var app = express();
 app.use(morgan('combined'));
 
-
-var ArticleOne = {
-    title: 'Article-One',
-    heading: 'Article-one',
-    date: '24-02-2018',
-    content: ` <pre>
-            This is how pre formatted works 
-            1
-            1 1
-            1 1 1
-            1 1 1 1
-            1 1 1 1 1 
-            1 1 1 1 1 1
-         </pre>
+var Articles={
+     'ArticleOne': {
+        title: 'Article-One',
+        heading: 'Article-one',
+        date: '24-02-2018',
+        content: ` <pre>
+                This is how pre formatted works 
+                1
+                1 1
+                1 1 1
+                1 1 1 1
+                1 1 1 1 1 
+                1 1 1 1 1 1
+             </pre>
+            
+             <p>
+                Well just trying something nothing more its kinda new for me but would be fun doing it =P
+             </p>`
+    },
+     'ArticleTwo': {
+        title: 'Article-Two',
+        heading: 'Article-Two',
+        date: '24-02-2018',
+        content: ` Lets see marquee tag
+      <marquee>Hello =) Its moving.</marquee>
         
-         <p>
+        <p>
             Well just trying something nothing more its kinda new for me but would be fun doing it =P
-         </p>`
+            Hahaha Rainbow Rainbow.
+        </p> `
+     },
+     'ArticleThree': { 
+        title: 'Article-Two',
+        heading: 'Article-Two',
+        date: '24-02-2018',
+        content: `<pre>
+            Lets see heading tags and many more
+            <h1><u>This is H1</u></h1>
+            <h2><s>This is H2</s></h2>
+            <h3><marquee>This is H3</marquee></h3>
+            <h4><i>This is H4</i></h4>
+            <h5><sub>This is H5</sub></h5>
+            <h6><sup>This is H6</sup></h6>
+        </pre>
+        
+        <p>
+            Well just trying something nothing more its kinda new for me but would be fun doing it =P
+        </p>`
+      
+         
+     },
+ 
 };
-
+ 
 function createtemplate (data){
        var title=data.title;
        var heading=data.heading;
@@ -60,8 +94,11 @@ app.get('/', function (req, res) {
   res.sendFile(path.join(__dirname, 'ui', 'index.html'));
 });
 
-app.get('/article-one', function(req, res){
-   res.send(createtemplate(ArticleOne));
+app.get('/:ArticleName', function(req, res){
+   res.send(createtemplate(Article[ArticleName]));
+   // ArticleName == ArticleOne
+   // Article[ArticleName] == {} content object for article one
+   var ArticleName = req.params.ArticleName;
 });
 
 app.get('/article-two', function(req, res){
