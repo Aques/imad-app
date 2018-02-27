@@ -1,14 +1,25 @@
 //Counter code
 var button = document.getElementById('counter');
-var counter = 0;
 button.onclick = function(){
  
  //Create a request
+ var request = new XMLHttpRequest();
  
  //Capture the request
+ request.onreadystatechange = function(){
+     if(request.readyState === XMlHttpRequest.DONE){
+         if(request.status === 200){
+             var counter = request.responseText;
+             var span= document.getElementById('count');
+             span.innerHTML = counter.toString();
+         }
+         
+     }
+     
+ }
+ //Make a request
+        request.open('GET', 'http://prashantbhambhanik.imad.hasura-app.io/counter', true);
+        request.send(null);
  
- //Rendering the variable in correct span
- counter = counter + 1;
- var span= document.getElementById('count');
- span.innerHTML = counter.toString();
+ 
 };
