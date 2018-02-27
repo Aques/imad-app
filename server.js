@@ -64,6 +64,7 @@ function createTemplate (data){
        var title = data.title;
        var heading = data.heading;
        var content = data.content;
+       
         var htmlTemplate =  `
             <html>
             <head>
@@ -97,10 +98,11 @@ app.get('/', function (req, res) {
 });
 
 app.get('/:articleName', function(req, res){
-   res.send(createTemplate(articles[articleName]));
    // articleName == article-one
    // Article[articleName] == {} content object for article one
    var articleName = req.params.articleName;
+   res.send(createTemplate(articles[articleName]));
+   
 });
 
 app.get('/ui/style.css', function (req, res) {
