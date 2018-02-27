@@ -7,7 +7,7 @@ button.onclick = function(){
  
  //Capture the request
  request.onreadystatechange = function(){
-     if(request.readyState === XMlHttpRequest.DONE){
+     if(request.readyState === XMLHttpRequest.DONE){
          //Take some action
          if(request.status === 200){
              var counter = request.responseText;
