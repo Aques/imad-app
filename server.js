@@ -5,7 +5,8 @@ var path = require('path');
 var app = express();
 app.use(morgan('combined'));
 
-var Articles={
+var articles = 
+{
      'article-one': {
         title: 'Article-One',
         heading: 'Article-one',
@@ -59,11 +60,11 @@ var Articles={
  
 };
  
-function createtemplate (data){
-       var title=data.title;
-       var heading=data.heading;
-       var content= data.content;
-        var templatehtml =  `
+function createTemplate (data){
+       var title = data.title;
+       var heading = data.heading;
+       var content = data.content;
+        var htmlTemplate =  `
             <html>
             <head>
             
@@ -80,14 +81,15 @@ function createtemplate (data){
                  <hr>
                  <hr>
                  <h1> ${heading} </h1>
+                 <div>
                  ${content}
-                 
+                 </div>
                 </div>
             </body>
             
         </html> 
         `;
-        return templatehtml;
+        return htmlTemplate;
 }
 
 app.get('/', function (req, res) {
@@ -95,7 +97,7 @@ app.get('/', function (req, res) {
 });
 
 app.get('/:articleName', function(req, res){
-   res.send(createtemplate(Article[articleName]));
+   res.send(createTemplate(articles[articleName]));
    // articleName == article-one
    // Article[articleName] == {} content object for article one
    var articleName = req.params.articleName;
