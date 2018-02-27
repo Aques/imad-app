@@ -6,7 +6,7 @@ var app = express();
 app.use(morgan('combined'));
 
 var Articles={
-     'ArticleOne': {
+     'article-one': {
         title: 'Article-One',
         heading: 'Article-one',
         date: '24-02-2018',
@@ -24,7 +24,7 @@ var Articles={
                 Well just trying something nothing more its kinda new for me but would be fun doing it =P
              </p>`
     },
-     'ArticleTwo': {
+     'article-two': {
         title: 'Article-Two',
         heading: 'Article-Two',
         date: '24-02-2018',
@@ -36,7 +36,7 @@ var Articles={
             Hahaha Rainbow Rainbow.
         </p> `
      },
-     'ArticleThree': { 
+     'article-three': { 
         title: 'Article-Two',
         heading: 'Article-Two',
         date: '24-02-2018',
@@ -94,11 +94,11 @@ app.get('/', function (req, res) {
   res.sendFile(path.join(__dirname, 'ui', 'index.html'));
 });
 
-app.get('/:ArticleName', function(req, res){
-   res.send(createtemplate(Article[ArticleName]));
-   // ArticleName == ArticleOne
-   // Article[ArticleName] == {} content object for article one
-   var ArticleName = req.params.ArticleName;
+app.get('/:articleName', function(req, res){
+   res.send(createtemplate(Article[articleName]));
+   // articleName == article-one
+   // Article[articleName] == {} content object for article one
+   var articleName = req.params.articleName;
 });
 
 app.get('/ui/style.css', function (req, res) {
