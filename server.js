@@ -5,9 +5,9 @@ var path = require('path');
 var app = express();
 app.use(morgan('combined'));
 
-var articles = 
+var Articles = 
 {
-     'article-one': {
+     'ArticleOne': {
         title: 'Article-One',
         heading: 'Article-one',
         date: '24-02-2018',
@@ -25,7 +25,7 @@ var articles =
                 Well just trying something nothing more its kinda new for me but would be fun doing it =P
              </p>`
     },
-     'article-two': {
+     'ArticleTwo': {
         title: 'Article-Two',
         heading: 'Article-Two',
         date: '24-02-2018',
@@ -37,7 +37,7 @@ var articles =
             Hahaha Rainbow Rainbow.
         </p> `
      },
-     'article-three': { 
+     'ArticleThree': { 
         title: 'Article-Two',
         heading: 'Article-Two',
         date: '24-02-2018',
@@ -101,7 +101,7 @@ app.get('/:articleName', function(req, res){
    // articleName == article-one
    // Article[articleName] == {} content object for article one
    var articleName = req.params.articleName;
-   res.send(createTemplate(articles[articleName]));
+   res.send(createTemplate(Articles[articleName]));
    
 });
 
