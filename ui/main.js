@@ -8,6 +8,7 @@ button.onclick = function(){
  //Capture the request
  request.onreadystatechange = function(){
      if(request.readyState === XMlHttpRequest.DONE){
+         //Take some action
          if(request.status === 200){
              var counter = request.responseText;
              var span= document.getElementById('count');
@@ -16,7 +17,7 @@ button.onclick = function(){
          
      }
      
- }
+ };
  //Make a request
         request.open('GET', 'http://prashantbhambhanik.imad.hasura-app.io/counter', true);
         request.send(null);
