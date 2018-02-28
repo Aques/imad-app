@@ -111,6 +111,10 @@ app.get('/:articleName', function(req, res){
    
 });
 
+app.get('/test-db', function(req, res){
+    
+    
+});
 
 
 
