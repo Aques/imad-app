@@ -112,12 +112,26 @@ app.get('/', function (req, res) {
   res.sendFile(path.join(__dirname, 'ui', 'index.html'));
 });
 
-app.get('/:articleName', function(req, res){
+app.get('/articles/:articleName', function(req, res){
    // articleName == article-one
    // Article[articleName] == {} content object for article one
-   var articleName = req.params.articleName;
-   res.send(createTemplate(Articles[articleName]));
-   
+  
+   pool.query("SELECT * FROM article WHERE title =" + req.params.articleName, function(err, result){
+       if(err){
+           res.status(500).send(err, tostring());
+       }
+       else{
+           if(result.rows.lenght === 0){
+               res.status(404).send('Article not found');
+               
+           }
+           else{
+               var articleData = result.rows[0];
+               res.send(createTemplate(articleData));
+           }
+           
+       }
+   });
 });
 
 var pool = new pool(config);
