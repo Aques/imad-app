@@ -111,19 +111,8 @@ function createTemplate (data){
 
 app.get('/', function (req, res) {
   res.sendFile(path.join(__dirname, 'ui', 'index.html'));
-  return hashed.toString('hex');
 });
 
-
-function hash(input, salt){
-    //How do we create a hash
-    var hashed = crypto.pbkdf2sync(input, salt, 100000, 512, 'sha512');
-    return[hashed.toString('hex')].join('$');
-}
-app.get('/hash/:input', function(req, res){
-   var  hashedString = hash(req.params.input, 'This-is-salty-salt.');
-   res.send(hashedString);
-});
 
 app.get('/articles/:articleName', function(req, res){
    // articleName == article-one
@@ -163,6 +152,17 @@ app.get('/test-db', function(req, res){
 
     
 });
+
+function hash(input, salt){
+    //How do we create a hash
+    var hashed = crypto.pbkdf2sync(input, salt, 100000, 512, 'sha512');
+    return[hashed.toString('hex')].join('$');
+}
+app.get('/hash/:input', function(req, res){
+   var  hashedString = hash(req.params.input, 'This-is-salty-salt.');
+   res.send(hashedString);
+});
+
 
 
 
