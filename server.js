@@ -118,7 +118,7 @@ app.get('/', function (req, res) {
 function hash(input, salt){
     //How do we create a hash
     var hashed = crypto.pbkdf2sync(input, salt, 100000, 512, 'sha512');
-    
+    return[hashed.toString('hex')].join('$');
 }
 app.get('/hash/:input', function(req, res){
    var  hashedString = hash(req.params.input, 'This-is-salty-salt.');
